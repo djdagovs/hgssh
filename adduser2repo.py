@@ -2,12 +2,6 @@
 
 """adduser2repo: add a user to hgssh3 configuration file."""
 
-__author__      = "Robert Tulke, rt@debian.sh"
-__copyright__   = "Copyright 2014, Robert Tulke"
-__license__     = "GPL"
-__version__     = "1.0.3"
-__status__      = "Testing"
-
 import ConfigParser, os, sys
 
 cfgfile = "/home/repo/hgssh3.conf"

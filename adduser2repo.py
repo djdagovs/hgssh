@@ -6,7 +6,6 @@ __author__      = "Robert Tulke, rt@debian.sh"
 __copyright__   = "Copyright 2014, Robert Tulke"
 __license__     = "GPL"
 __version__     = "1.0.3"
-__Modified_By   = "Rachit Gupta, rachit.gupta@berlin-airport.de"
 __status__      = "Testing"
 
 import ConfigParser, os, sys

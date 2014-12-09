@@ -11,8 +11,11 @@ __status__      = "Testing"
 
 import ConfigParser, os, sys
 
+cfgfile = "/home/repo/hgssh3.conf"
+
+## main part
 config = ConfigParser.ConfigParser()
-config.read("/home/repo/hgssh3.conf")
+config.read(cfgfile)
 
 def get_permission(repository,conf):
 
@@ -34,40 +37,38 @@ repo = sys.argv[1]
 user = sys.argv[2]
 perm = sys.argv[3]
 path = "/home/repo"
-repopath = path + repo
 
-#perms = get_permission(repo,"/home/repo/hgssh3.conf")
-#access = perms[user]
-#if access not in [perm]:
-#    config.set(repo, user, perm)
-#    config.write(open("/home/repo/hgssh3.conf", "w"))
+repopath = path + repo
 
 ## check if repository section are already in there
 if not config.has_section(repo):
     config.add_section(repo)
     config.set(repo,"location", path)
-    print "section: %s added!" % repo
+    print "repository: [%s] now added to %s!" % (repo, cfgfile)
 else:
-   print "The section exit ..checking user ...."
-   
+    print "repository: [%s] is already exist in %s!" % (repo, cfgfile)
+
 ## check if a user is in section already in there
 if not config.has_option(repo, user):
     config.set(repo, user, perm)
-    config.write(open("/home/repo/hgssh3.conf", "w"))
-    print "user: %s added!" %user
+    config.write(open(cfgfile, "w"))
+    print "user: %s added to section repository [%s]" % (user, repo)
 else:
-   print "The user %s already exist, checking permissions..." % user
+    print "user: %s is already exist in section repository [%s]" % (user, repo)
 
 ## check the permission
-perms = get_permission(repo,"/home/repo/hgssh3.conf")
+perms = get_permission(repo, cfgfile)
 access = perms[user]
 
 if access not in [perm]:
     if perm in ['read','write']:
        config.set(repo, user, perm)
-       config.write(open("/home/repo/hgssh3.conf", "w"))
-       print "The permission is now changed to: %s" % perm
+       config.write(open(cfgfile, "w"))
+       print "the permission for user: %s is now changed to: %s" % (user, perm)
+       print
+       print "[%s]" % repo
+       print "%s = %s" % (user, perm)
     else:
-       print "The permission can only be read|write"
+       print "the permission can only be read|write"
 else:
-  print "the permission is set"
+    print "the permission for: %s is already set" % (user)

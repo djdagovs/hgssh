@@ -1,0 +1,11 @@
+[myrepo1]
+location=folder/to/repos/myrepo1
+user1=write
+user2=read
+user3=read
+user4=write
+
+[myrepo2]
+location=folder/to/repos/subdir/differentNamedRepo
+user3=write
+user1=read

@@ -1,7 +1,7 @@
 hgssh
 =====
 
-A Toolset to control ssh access to mercurial repositories based on hgssh3
+A Toolset to control the ssh access with mercurial repositories based on hgssh3
 
 * adduser2repo.py - add a user to a repository (hgssh3 + conf is required)
 * addrepo - a bashscript to add a new repository
